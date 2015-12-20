@@ -3,8 +3,8 @@ html
   head
     link(href='static/css/libs.css', rel="stylesheet")
     link(href='static/css/themes/default.css', rel="stylesheet")
-  body
-    div(id='main' ng-app='tt365plus')
+  body(ng-app='tt365plus')
+    div(id='main' ng-controller='mainController')
     div(id='modal')
     script(src='static/js/libs.js')
     script(src='static/js/dist.js')

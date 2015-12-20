@@ -3,7 +3,8 @@ var fs = require('fs')
   , express = require('express')
   , session = require('express-session')
   , bodyParser = require('body-parser')
-  , urls = require('./urls.js')
+  , expressWs = require('express-ws')
+  , routes = require('./routes.js')
   , paginate = require('./paginate.js')
   , config = require('./config.json');
 
@@ -21,11 +22,14 @@ app.use('/static', express.static(path.join(__dirname, '/tmp/public/static')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+//websocket
+expressWs(app);
+
 //bind auto paginator
 //paginate(app);
 
 //bind responses
-urls(app);
+routes(app);
 
 /** STAY A WHILE AND LISTEN **/
 

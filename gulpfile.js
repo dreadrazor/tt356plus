@@ -4,7 +4,6 @@ var gulp = require('gulp')
   , argv = require('yargs').argv
   , shell = require('gulp-shell')
   , watch = require('gulp-watch')
-  , batch = require('gulp-batch')
   , concat = require('gulp-concat')
   , jshint = require('gulp-jshint')
   , jsdoc = require("gulp-jsdoc");
@@ -46,6 +45,7 @@ gulp.task('copy-libs-js', function(){
             , 'node_modules/angular-bootstrap/ui-bootstrap-tpls.min.js'
             , 'node_modules/angular-ui-grid/ui-grid.min.js'
             , 'node_modules/angular-cookies/angular-cookies.min.js',
+            , 'node_modules/angular-websocket/angular-websocket.min.js',
             , 'node_modules/async/dist/async.min.js'
             , 'node_modules/underscore/underscore-min.js'
           ])
@@ -67,7 +67,7 @@ gulp.task('scss', function () {
 gulp.task('js', function(){
   return gulp.src([
             'public/static/config.js'
-            , 'public/static/js/*.js'
+            , 'public/static/js/**/*.js'
          ])
          .pipe(concat('dist.js'))
          .pipe(gulp.dest('tmp/public/static/js'));

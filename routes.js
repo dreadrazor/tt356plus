@@ -105,6 +105,30 @@ module.exports = function(app){
 		}
 	});
 
+	app.ws('/live', function(ws, req) {
+
+		var interv;
+
+		ws.on('close', function(msg) {
+			clearInterval(interv);
+			console.log("stopping");
+	  });
+
+		ws.on('message', function(msg) {
+			msg = JSON.parse(msg);
+			if(msg.action == "start"){
+				console.log("starting");
+				interv = setInterval(function(){
+					ws.send(JSON.stringify({message: "random message"}));
+				}, 1000);
+			}else if(msg.action == "stop"){
+				clearInterval(interv);
+				console.log("stopping");
+			}
+	  });
+
+	});
+
 	app.get('/*', function (req, res) {
   	res.render('app');
   });
