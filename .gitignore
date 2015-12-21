@@ -1,6 +1,7 @@
 node_modules/
 tmp/
 database/
+docs/jshint-output.html
 
 npm-debug.log
 node-debug.log
