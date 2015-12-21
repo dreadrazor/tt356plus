@@ -1,7 +1,6 @@
 node_modules/
 tmp/
 database/
-docs/
 
 npm-debug.log
 node-debug.log
