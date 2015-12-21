@@ -6,6 +6,10 @@ db.player = new Datastore({ filename: './database/player.json', autoload: true }
 db.match = new Datastore({ filename: './database/match.json', autoload: true });
 db.score = new Datastore({ filename: './database/score.json', autoload: true });
 
+function generateRandomInt(min, max){
+	return Math.round(min + Math.random() * (max-min));
+}
+
 module.exports = function(app){
 
 	app.get(/^\/api\/(\w+)\/?(\w+)?$/, function (req, res) {
@@ -105,28 +109,36 @@ module.exports = function(app){
 		}
 	});
 
-	app.ws('/live', function(ws, req) {
+	app.ws('/results', function(ws, req) {
+		db.player.find({}, function(err, players){
+			if(!err){
+				var interv;
 
-		var interv;
+				ws.on('close', function(msg) {
+					clearInterval(interv);
+				});
 
-		ws.on('close', function(msg) {
-			clearInterval(interv);
-			console.log("stopping");
-	  });
+				ws.on('message', function(msg) {
+					msg = JSON.parse(msg);
+					if(msg.action == "start"){
+						interv = setInterval(function(){
+							var result = {};
+							result.p1 = players[generateRandomInt(0, players.length-1)]._id;
+							result.p2 = players[generateRandomInt(0, players.length-1)]._id;
+							if(Math.round(Math.random())){
+								result.score = "3-"+generateRandomInt(0,2);
+							}else{
+								result.score = generateRandomInt(0,2)+"-3";
+							}
 
-		ws.on('message', function(msg) {
-			msg = JSON.parse(msg);
-			if(msg.action == "start"){
-				console.log("starting");
-				interv = setInterval(function(){
-					ws.send(JSON.stringify({message: "random message"}));
-				}, 1000);
-			}else if(msg.action == "stop"){
-				clearInterval(interv);
-				console.log("stopping");
+							ws.send(JSON.stringify([result]));
+						}, 200);
+					}else if(msg.action == "stop"){
+						clearInterval(interv);
+					}
+				});
 			}
-	  });
-
+		});
 	});
 
 	app.get('/*', function (req, res) {

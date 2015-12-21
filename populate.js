@@ -9,10 +9,6 @@ var playersPerTeam = argv.playersPerTeam || 5;
 
 db.team = new Datastore({ filename: './database/team.json', autoload: true });
 db.player = new Datastore({ filename: './database/player.json', autoload: true });
-db.match = new Datastore({ filename: './database/match.json', autoload: true });
-db.score = new Datastore({ filename: './database/score.json', autoload: true });
-//db.season = new Datastore({ filename: './database/season.json', autoload: true });
-//db.league = new Datastore({ filename: './database/league.json', autoload: true });
 
 /* RANDOMIZERS */
 
@@ -70,11 +66,11 @@ function createTeams(callback){
 var players = [];
 function createPlayers(callback){
   for(var d in teams){
-    for(var j=0; j <= playersPerTeam; j++){
+    for(var j=0; j < playersPerTeam; j++){
       var player = {
         name: generateRandomName(),
         team: teams[d]._id,
-        rating: generateRandomInt((divisions - parseInt(teams[d].division)) * 500, (divisions - parseInt(teams[d].division)) * 750), //elo seeding
+        rating: generateRandomInt((divisions + 1 - parseInt(teams[d].division)) * 500, (divisions + 1 - parseInt(teams[d].division)) * 750), //elo seeding
       }
 
       db.player.insert(player);

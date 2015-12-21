@@ -1,0 +1,15 @@
+<div class="players">
+  <h2>Players</h2>
+  <div class="filter">
+    <button class="btn btn-danger">All</button>
+  </div>
+  <div class="player header">
+    <span class="name">Name</span>
+    <span class="rating">Rating</span>
+    <span class="team">Team</span>
+    <span class="division">Division</span>
+  </div>
+  <div class="data">
+    <player ng-repeat="player in players | orderBy:'-rating' track by player._id"></player>
+  </div>
+</div>

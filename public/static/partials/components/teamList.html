@@ -1,0 +1,15 @@
+<div class="teams">
+  <h2>Teams</h2>
+  <div class="filter">
+    <button class="btn" ng-class="{'btn-primary': filter.division != '' , 'btn-danger': filter.division == ''}" ng-click="filterDiv('')">All</button>
+    <button ng-repeat="div in divisions" class="btn" ng-class="{'btn-primary': filter.division != div , 'btn-danger': filter.division == div}" ng-click="filterDiv(div)">Div {{:: div}}</button>
+  </div>
+  <div class="team header">
+    <span class="name">Name</span>
+    <span class="points">Points</span>
+    <span class="division">Division</span>
+  </div>
+  <div class="data">
+    <team ng-repeat="team in teams | filter:filter | orderBy:'-points' track by team._id"></team>
+  </div>
+</div>

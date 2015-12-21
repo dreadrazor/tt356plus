@@ -5,8 +5,7 @@ var gulp = require('gulp')
   , shell = require('gulp-shell')
   , watch = require('gulp-watch')
   , concat = require('gulp-concat')
-  , jshint = require('gulp-jshint')
-  , jsdoc = require("gulp-jsdoc");
+  , jshint = require('gulp-jshint');
 
 gulp.task('clean-tmp', function(){
     return del(['tmp']);
@@ -29,7 +28,6 @@ gulp.task('copy-libs-css', function(){
   return gulp.src([
             'node_modules/bootstrap/dist/css/bootstrap.min.css'
             , 'node_modules/animate.css/animate.min.css'
-            , 'node_modules/angular-ui-grid/ui-grid.min.css'
             , 'node_modules/pace/themes/purple/pace-theme-barber-shop.css'
           ])
           .pipe(concat('libs.css'))
@@ -43,9 +41,11 @@ gulp.task('copy-libs-js', function(){
             , 'node_modules/pace/pace.min.js'
             , 'node_modules/angular/angular.min.js'
             , 'node_modules/angular-bootstrap/ui-bootstrap-tpls.min.js'
-            , 'node_modules/angular-ui-grid/ui-grid.min.js'
             , 'node_modules/angular-cookies/angular-cookies.min.js',
             , 'node_modules/angular-websocket/angular-websocket.min.js',
+            , 'node_modules/angular-animate/angular-animate.min.js',
+            , 'node_modules/angular-route/angular-route.min.js',
+            , 'node_modules/restangular/dist/restangular.min.js',
             , 'node_modules/async/dist/async.min.js'
             , 'node_modules/underscore/underscore-min.js'
           ])
@@ -56,6 +56,11 @@ gulp.task('copy-libs-js', function(){
 gulp.task('assets', function(){
   return gulp.src(['public/static/assets/**/*'])
          .pipe(gulp.dest('tmp/public/static/assets'));
+});
+
+gulp.task('partials', function(){
+  return gulp.src(['public/static/partials/**/*'])
+         .pipe(gulp.dest('tmp/public/static/partials'));
 });
 
 gulp.task('scss', function () {
@@ -98,11 +103,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('docs', function(){
-  return gulp.src([
-            './*.js'
-            , 'public/static/**/*.js'
-         ])
-         .pipe(jsdoc('./docs'));
+  //todo
 });
 
 gulp.task('watch', ['quick'], function () {
@@ -114,8 +115,8 @@ gulp.task('watch', ['quick'], function () {
     });
 });
 
-gulp.task('copy', ['templates', 'assets', 'copy-libs-fonts', 'copy-libs-css', 'copy-libs-js'], function() {});
+gulp.task('copy', ['templates', 'partials', 'assets', 'copy-libs-fonts', 'copy-libs-css', 'copy-libs-js'], function() {});
 gulp.task('install', ['populate', 'docs', 'build'], function() {});
 gulp.task('build', ['lint', 'copy', 'scss', 'js'], function() {});
-gulp.task('quick', ['lint', 'templates', 'assets', 'scss', 'js'], function() {});
+gulp.task('quick', ['lint', 'templates', 'partials', 'assets', 'scss', 'js'], function() {});
 gulp.task('default', ['build'], function() {});

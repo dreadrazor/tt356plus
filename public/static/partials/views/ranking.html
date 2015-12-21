@@ -1,0 +1,7 @@
+<h1>Ranking</h1>
+<div class="socketInterface">
+  <button class="btn" ng-class="{'btn-success': !socketSwitch.value , 'btn-danger': socketSwitch.value }" ng-click="toggleSocket()">{{ socketSwitch.value ? 'Stop' : 'Start' }}</button>
+  <span>This button enables/disables websocket stream</span>
+</div>
+<playerlist players="players"></playerlist>
+<teamlist teams="teams"></teamlist>

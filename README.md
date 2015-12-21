@@ -1,6 +1,7 @@
 Install
 ---
 ### Install ###
+npm install gulp -g
 npm install
 ### Populate / Document / Build ###
 gulp install

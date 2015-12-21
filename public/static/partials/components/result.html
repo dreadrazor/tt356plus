@@ -1,0 +1,5 @@
+<div class="result" ng-class="{won: result.winner === player , lost: result.winner !== player}">
+  <span class="player1" ng-class="{ highlight: result.p1 === player }" ng-bind="::result.p1.name + ' ('+ result.p1.rating +')'"></span>
+  <span class="score" ng-bind="result.score"></span>
+  <span class="player2" ng-class="{ highlight: result.p2 === player }" ng-bind="::result.p2.name + ' ('+ result.p2.rating +')'"></span>
+</div>

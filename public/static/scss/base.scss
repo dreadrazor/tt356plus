@@ -2,5 +2,209 @@
 
 body {
   font: 100% Helvetica, sans-serif;
-  background-color: #efefef;
+  background-color: $bg;
+  margin: 0;
+  padding: 0;
+  font-size: $fontSizeNormal;
+
+  .btn{
+    padding: 3px 10px;
+    text-transform: capitalize;
+  }
+
+  .highlight{
+    color: $highlight;
+  }
+
+  .main{
+    .loading{
+      img{
+        margin: 0 auto;
+        display: block;
+      }
+    }
+
+    h1{
+      margin-bottom: 20px;
+      padding-left: 1%;
+    }
+
+    .nav{
+      width: 100%;
+      display: block;
+      text-align: left;
+      padding-left: 1%;
+    }
+
+    .socketInterface{
+      padding-left: 1%;
+    }
+
+    .players, .teams, .results{
+      padding: 0 2%;
+      width: 50%;
+      float: left;
+      display: inline-block;
+
+      .filter{
+        margin-bottom: 10px;
+
+        .btn{
+          margin-right: 10px;
+        }
+      }
+
+      .header{
+        background-color: $primary;
+        color: $fontLight;
+        padding: 20px 10px;
+        border: 1px solid $borderColor;
+        border-radius: 5px 5px 0 0;
+      }
+
+      .data{
+        border: 1px solid $borderColor;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+      }
+    }
+
+    .players{
+      .player{
+        display: block;
+        width: 100%;
+        padding: 10px;
+
+        >span{
+          display: inline-block;
+        }
+
+        .name, .team{
+          width: 25%;
+        }
+
+        .rating, .division{
+          width: 15%;
+        }
+
+        .rating{
+          .glyphicon{
+            width: 20px;
+            display: inline-block;
+          }
+
+          .glyphicon-chevron-up{
+            color: green;
+          }
+
+          .glyphicon-chevron-down{
+            color: red;
+          }
+        }
+      }
+
+      .data{
+        player:nth-child(even){
+          .player{
+            background-color: $rowAltColor;
+          }
+        }
+
+        .player:hover{
+          background-color: $secondary !important;
+          color: $fontLight;
+
+          a{
+            color: $highlight;
+          }
+        }
+      }
+    }
+
+    .teams{
+      .team{
+        display: block;
+        width: 100%;
+        padding: 10px;
+
+        >span{
+          display: inline-block;
+        }
+
+        .name{
+          width: 50%;
+        }
+
+        .division, .points{
+          width: 15%;
+        }
+      }
+
+      .data{
+        team:nth-child(even){
+          .team{
+            background-color: $rowAltColor;
+          }
+        }
+
+        .team:hover{
+          background-color: $secondary !important;
+          color: $fontLight;
+
+          a{
+            color: $highlight;
+          }
+        }
+      }
+
+    }
+
+    .results{
+      .result{
+        display: block;
+        width: 100%;
+        padding: 10px;
+
+        >span{
+          display: inline-block;
+        }
+
+        .player1, .player2, .score{
+          width: 25%;
+        }
+
+        .score{
+          text-align: center;
+        }
+      }
+
+      .data{
+        result:nth-child(even){
+          .result{
+            background-color: $rowAltColor;
+          }
+        }
+
+        .result:hover{
+          background-color: $secondary !important;
+          color: $fontLight;
+
+          a{
+            color: $highlight;
+          }
+        }
+
+        result{
+          .result.lost{
+              background-color: $lost;
+            }
+
+          .result.won{
+              background-color: $won;
+            }
+        }
+      }
+    }
+
+  }
 }

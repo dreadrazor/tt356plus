@@ -1,0 +1,6 @@
+<div class="player">
+  <span class="name"><a ng-href="{{ :: '#/player/'+player._id }}" ng-bind="::player.name"></a></span>
+  <span class="rating"><i class="glyphicon" ng-class="{ 'glyphicon-chevron-up': player._trend > 1, 'glyphicon-chevron-down': player._results.length > 2 && player._trend < 2 }"></i> {{ player.rating }}</span>
+  <span class="team" ng-bind="::player._team.name"></span>
+  <span class="division" ng-bind="::player._team.division"></span>
+</div>
