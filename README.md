@@ -2,8 +2,9 @@ Install
 ---
 ### Install ###
 npm install gulp -g
+
 npm install
-### Populate / Document / Build ###
+
 gulp install
 
 Run
@@ -15,9 +16,18 @@ Development extras
 ---
 ### Quick build ###
 gulp quick
+
 ### Development mode will auto-quick-rebuild if anything changes ###
 gulp watch
-### Lint ###
+
+### Lint (goes into 'docs/jshint-output') ###
 gulp lint
-### Document ###
-gulp docs
+
+### Test (node server must be lunched manually beforehand atm) ###
+npm install -g protractor
+
+webdriver-manager update
+
+npm start
+
+gulp test

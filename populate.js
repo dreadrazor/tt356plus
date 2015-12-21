@@ -3,9 +3,9 @@ var Datastore = require('nedb')
 	, argv = require('yargs').argv
 	, db = { };
 
-var howmany = argv.howmany || 10;
-var divisions = argv.divisions || 3;
-var playersPerTeam = argv.playersPerTeam || 5;
+var howmany = argv.howmany || 5;
+var divisions = argv.divisions || 2;
+var playersPerTeam = argv.playersPerTeam || 4;
 
 db.team = new Datastore({ filename: './database/team.json', autoload: true });
 db.player = new Datastore({ filename: './database/player.json', autoload: true });

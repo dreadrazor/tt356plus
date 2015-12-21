@@ -1,6 +1,6 @@
 <div ng-if="isReady.value" ng-init="init()">
-  <h1>Team > {{ ::team.name }}</h1>
-  <div class="nav">
+  <h1 class="animated shake">Team > {{ ::team.name }}</h1>
+  <div class="nav animated fadeIn">
     <a class="btn btn-primary" href="#/ranking">Back</a>
   </div>
   <playerlist players="team._players"></playerlist>

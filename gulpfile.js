@@ -5,7 +5,8 @@ var gulp = require('gulp')
   , shell = require('gulp-shell')
   , watch = require('gulp-watch')
   , concat = require('gulp-concat')
-  , jshint = require('gulp-jshint');
+  , jshint = require('gulp-jshint')
+  , angularProtractor = require('gulp-angular-protractor');
 
 gulp.task('clean-tmp', function(){
     return del(['tmp']);
@@ -104,6 +105,19 @@ gulp.task('lint', function() {
 
 gulp.task('docs', function(){
   //todo
+});
+
+gulp.task('test', ['build'], function(callback) {
+    gulp.src(['tests/frontend/**/*.js'])
+        .pipe(angularProtractor({
+            'configFile': 'tests/conf.js',
+            'debug': false,
+            'autoStartStopServer': true
+        }))
+        .on('error', function(e) {
+            console.log(e);
+        })
+        .on('end', callback);
 });
 
 gulp.task('watch', ['quick'], function () {

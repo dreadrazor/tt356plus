@@ -132,7 +132,7 @@ module.exports = function(app){
 							}
 
 							ws.send(JSON.stringify([result]));
-						}, 200);
+						}, 100);
 					}else if(msg.action == "stop"){
 						clearInterval(interv);
 					}

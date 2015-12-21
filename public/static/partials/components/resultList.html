@@ -1,13 +1,13 @@
 <div class="results">
   <h2>Results</h2>
-  <div class="result header">
+  <div class="result header animated fadeIn">
     <span class="player1">Player 1</span>
     <span class="score">Score</span>
     <span class="player2">Player 2</span>
   </div>
-  <div class="data">
+  <div class="data animated fadeIn">
     <result ng-repeat="result in player._results" ng-if="player._results.length"></result>
-    <div class="result" ng-if="!player._results.length">
+    <div class="placeholder" ng-if="!player._results.length">
       <span class="player1"></span>
       <span class="score">No results</span>
       <span class="player2"></span>

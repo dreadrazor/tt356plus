@@ -13,7 +13,7 @@ app.controller('mainController', ['$scope', 'socket', 'db', 'pace', function ($s
     $scope.socketSwitch.value = !$scope.socketSwitch.value;
   }
 
-  socket.onMessage(function(message){
+  $scope.processMessage = function(message){
 
     var data = JSON.parse(message.data);
 
@@ -62,13 +62,12 @@ app.controller('mainController', ['$scope', 'socket', 'db', 'pace', function ($s
           }
           p2._results.push(result);
           p2._trend = _.reduce(p2._results.slice(-4, -1), function(memo, res){ return (res.winner === p2 ? memo+1 : memo) }, 0);
-
-          console.log(p1, p2);
-
         }
       }
     }
-  });
+  }
+
+  socket.onMessage($scope.processMessage);
 
   function getTeams(callback){
     db.team.getList().then(function(teams){
