@@ -84,8 +84,8 @@ gulp.task('templates', function(){
          .pipe(gulp.dest('tmp/public/templates'));
 });
 
-var howmany = argv.howmany || 10;
-var divisions = argv.divisions || 3;
+var howmany = argv.howmany || 5;
+var divisions = argv.divisions || 2;
 var playersPerTeam = argv.playersPerTeam || 5;
 gulp.task('populate', ['clean-db'], shell.task([
   'node ./populate.js --teams='+howmany+' --divisions='+divisions+' --playersPerTeam='+playersPerTeam
